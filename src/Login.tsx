@@ -11,7 +11,7 @@ export default function Login() {
     setError("");
 
     if (username === "abd" && password === "123456") {
-      navigate("/"); // go to home page
+      navigate("/welcome"); // go to home page
     } else {
       setError("Invalid username or password");
     }
