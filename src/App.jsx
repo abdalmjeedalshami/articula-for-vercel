@@ -9,7 +9,7 @@ import logoIcon from "./assets/icons/graduationCap.svg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Helmet } from "react-helmet";
-import HomePage from "./pages/HomePage";
+import HomePage from "../src/pages/home/Home"
 
 function App() {
   useEffect(() => {
