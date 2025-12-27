@@ -14,8 +14,120 @@ const MyArticles = ({ myArticles }) => {
   const { i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
 
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [articles, setArticles] = useState([
+    {
+      id: 1132,
+      title: 22,
+      author: "razan1",
+      created: "2025-12-26\n",
+      field_image:
+        "/api/sites/default/files/2025-12/Gemini_Generated_Image7_8.png",
+      body: 22,
+      field_gallery:
+        "/api/sites/default/files/2025-12/Gemini_Generated5_6.png, /api/sites/default/files/2025-12/Gemini_Generated4_5.png",
+      field_tags: ["Samsung", "iphone", "wireless"],
+    },
+    {
+      id: 1131,
+      title: 11,
+      author: "razan1",
+      created: "2025-12-26\n",
+      field_image:
+        "/api/sites/default/files/2025-12/Gemini_Generated_Image7_3.png",
+      body: 11,
+      field_gallery:
+        "/api/sites/default/files/2025-12/unnameds.jpg, /api/sites/default/files/2025-12/Gemini_Generated5_3.png",
+      field_tags: ["iphone"],
+    },
+    {
+      id: 1130,
+      title: "im title ",
+      author: "Tamkeen",
+      created: "2025-12-26\n",
+      field_image: "/api/sites/default/files/2025-12/21.jpg",
+      body: "im body",
+      field_gallery:
+        "/api/sites/default/files/2025-12/6_0.jpg, /api/sites/default/files/2025-12/7.jpg, /api/sites/default/files/2025-12/10.jpg",
+      field_tags: ["social media", "Samsung"],
+    },
+    {
+      id: 1129,
+      title: 4,
+      author: "razan1",
+      created: "2025-12-26\n",
+      field_image: "/api/sites/default/files/2025-12/Gemini_Generated2_0.png",
+      body: 4,
+      field_gallery:
+        "/api/sites/default/files/2025-12/unnameds_4.jpg, /api/sites/default/files/2025-12/Gemini_Generated_Image_0.png",
+      field_tags: ["social media"],
+    },
+    {
+      id: 1128,
+      title: 1,
+      author: "razan1",
+      created: "2025-12-26\n",
+      field_image: "/api/sites/default/files/2025-12/Gemini_Generated3_3.png",
+      body: 1,
+      field_gallery: "",
+      field_tags: ["social media"],
+    },
+    {
+      id: 1121,
+      title: "Edited: aaaaaaaaaaaaaaaaaaaaaa",
+      author: "Tamkeen",
+      created: "2025-12-25\n",
+      field_image: "/api/sites/default/files/2025-05/your-image1.jpg",
+      body: "Edi:aaaaaaaaaaaaaaaaaa",
+      field_gallery:
+        "/api/sites/default/files/2025-07/tamkeen_21.png, /api/sites/default/files/2025-07/about4.png",
+      field_tags: [],
+    },
+    {
+      id: 1120,
+      title: "user12234",
+      author: "masa",
+      created: "2025-12-25\n",
+      field_image: "/api/sites/default/files/2025-12/download_0.jpg",
+      body: "social medaia samsung phone",
+      field_gallery:
+        "/api/sites/default/files/2025-12/download%20%281%29_6.jpg, /api/sites/default/files/2025-12/image.jpeg, /api/sites/default/files/2025-12/people.png",
+      field_tags: ["wireless", "Samsung"],
+    },
+    {
+      id: 1117,
+      title: "ffffffffffff",
+      author: "Tamkeen",
+      created: "2025-12-25\n",
+      field_image:
+        "/api/sites/default/files/2025-12/2024_Nitro_Default_3840x2400.jpg",
+      body: "",
+      field_gallery: "",
+      field_tags: ["iphone"],
+    },
+    {
+      id: 1116,
+      title: "tamkeen",
+      author: "Tamkeen",
+      created: "2025-12-25\n",
+      field_image:
+        "/api/sites/default/files/2025-12/Screenshot%202025-10-29%20141332%20-%20Copy_1.png",
+      body: "oooooooooooooooooooooooooooo",
+      field_gallery: "",
+      field_tags: ["Samsung"],
+    },
+    {
+      id: 1115,
+      title: "ekram",
+      author: "Tamkeen",
+      created: "2025-12-25\n",
+      field_image: "/api/sites/default/files/2025-12/aaa_4.png",
+      body: "tamkeen",
+      field_gallery:
+        "/api/sites/default/files/2025-12/aaa_3.png, /api/sites/default/files/2025-12/Screenshot%202025-10-29%20141332%20-%20Copy_0.png, /api/sites/default/files/2025-12/sss%20-%20Copy_0.png",
+      field_tags: [],
+    },
+  ]);
+  const [loading, setLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(1);
 
   // UI state
@@ -49,8 +161,7 @@ const MyArticles = ({ myArticles }) => {
 
   // Fetch whenever filters change
   useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-    }, 1500); // debounce for live search
+    const delayDebounce = setTimeout(() => {}, 1500); // debounce for live search
 
     return () => clearTimeout(delayDebounce);
   }, [search, category, tag, sortBy, sortOrder, page, itemsPerPage]);
