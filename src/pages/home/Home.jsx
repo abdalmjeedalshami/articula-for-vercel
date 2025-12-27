@@ -214,7 +214,7 @@ const HomePage = () => {
   const { i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const articles = [

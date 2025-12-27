@@ -1,11 +1,6 @@
 // BlogModal.js
 import { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
-import {
-  createBlog,
-  uploadMultipleImages,
-  uploadSingleImage,
-} from "../../../utils/blog";
 import GalleryDropzone from "../../common/GalleryDropzone/GalleryDropzone";
 import TagSelector from "../../common/tag_selector/TagSelector";
 import CategorySelector from "../../common/category_selector/CategorySelector";
