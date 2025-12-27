@@ -31,11 +31,11 @@ import articleImage8 from "../../assets/images/articles_images/sharing_3.png";
 import articleImage9 from "../../assets/images/articles_images/teaching.png";
 import articleImage10 from "../../assets/images/articles_images/writing.png";
 
-import writer1 from "../../../src/assets/images/persons/person.jpg"
-import writer2 from "../../../src/assets/images/persons/person_2.jpg"
-import writer3 from "../../../src/assets/images/persons/person_3.jpg"
-import writer4 from "../../../src/assets/images/persons/person_4.jpg"
-import writer5 from "../../../src/assets/images/persons/person_5.jpg"
+import writer1 from "../../../src/assets/images/persons/person.jpg";
+import writer2 from "../../../src/assets/images/persons/person_2.jpg";
+import writer3 from "../../../src/assets/images/persons/person_3.jpg";
+import writer4 from "../../../src/assets/images/persons/person_4.jpg";
+import writer5 from "../../../src/assets/images/persons/person_5.jpg";
 
 import companyLogo from "../../assets/icons/AMG.CO.svg";
 
@@ -48,6 +48,9 @@ import companyLogo6 from "../../../src/assets/images/companies/CompanyLogo(6).sv
 import companyLogo7 from "../../../src/assets/images/companies/CompanyLogo(7).svg";
 
 import { useTranslation } from "react-i18next";
+
+import MyAppBar from "../../components/layout/my_appBar/MyAppBar"
+
 
 const categoryImages = [
   {
@@ -447,6 +450,7 @@ const HomePage = () => {
   ];
   return (
     <>
+      <MyAppBar />
       <Helmet>
         <title>Home | Articula</title>
         <meta name="description" content="This is the home page of Articula" />
@@ -477,32 +481,33 @@ const HomePage = () => {
       )} */}
       {/* {error && <p className="text-danger">{error}</p>} */}
 
-      {loading || error && (
-        <MySection
-          header={{
-            title: isArabic ? "جارٍ التحميل التصنيفات..." : "Categories",
-          }}
-          body={
-            <Row>
-              {/* Placeholder skeletons */}
-              {[...Array(8)].map((_, i) => (
-                <Col key={i} sm={6} md={4} lg={3} className="mb-3">
-                  <div className="placeholder-glow">
-                    <div className="card shadow-sm border-0 p-3">
-                      <div
-                        className="placeholder rounded w-100"
-                        style={{ height: "50px" }}
-                      ></div>
-                      <div className="placeholder col-7 mt-2"></div>
-                      <div className="placeholder col-4 mt-2"></div>
+      {loading ||
+        (error && (
+          <MySection
+            header={{
+              title: isArabic ? "جارٍ التحميل التصنيفات..." : "Categories",
+            }}
+            body={
+              <Row>
+                {/* Placeholder skeletons */}
+                {[...Array(8)].map((_, i) => (
+                  <Col key={i} sm={6} md={4} lg={3} className="mb-3">
+                    <div className="placeholder-glow">
+                      <div className="card shadow-sm border-0 p-3">
+                        <div
+                          className="placeholder rounded w-100"
+                          style={{ height: "50px" }}
+                        ></div>
+                        <div className="placeholder col-7 mt-2"></div>
+                        <div className="placeholder col-4 mt-2"></div>
+                      </div>
                     </div>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          }
-        />
-      )}
+                  </Col>
+                ))}
+              </Row>
+            }
+          />
+        ))}
 
       {/* {error && (
         <MySection

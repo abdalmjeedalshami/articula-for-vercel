@@ -2,13 +2,16 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Offcanvas, Dropdown, Button } from "react-bootstrap";
 import profileImage from "../../../assets/images/profile.webp";
-import { handleLogout } from "../../../utils/auth";
+// import { handleLogout } from "../../../utils/auth";
 import "./myDropdown.css";
 import { useTranslation } from "react-i18next";
-import { useUser } from "../../../utils/UserContext";
+// import { useUser } from "../../../utils/UserContext";
 
 function MyDropdown() {
-  const { user } = useUser();
+  const user  = {
+    user_picture: [{url: ""}]
+  };
+  // const { user } = useUser();
   const { i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
   const navigate = useNavigate();
@@ -87,7 +90,7 @@ function MyDropdown() {
               <Button
                 variant="outline-danger"
                 onClick={() => {
-                  handleLogout(navigate);
+                  // handleLogout(navigate);
                   handleClose();
                 }}
               >
@@ -134,7 +137,9 @@ function MyDropdown() {
             </Dropdown.Item>
             <Dropdown.Item
               className="d-flex justify-content-start"
-              onClick={() => handleLogout(navigate)}
+              onClick={() => {
+                // handleLogout(navigate)
+              }}
             >
               {isArabic ? "تسجيل الخروج" : "Logout"}
             </Dropdown.Item>
