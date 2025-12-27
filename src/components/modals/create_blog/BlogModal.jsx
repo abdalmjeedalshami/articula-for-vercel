@@ -12,13 +12,13 @@ const CreateBlogModal = ({
   handleCloseConfirmed,
   articleAddedFun,
   tags,
+  categories
 }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [status, setStatus] = useState("");
 
   const [title, setTitle] = useState("");
   const [galleryFiles, setGalleryFiles] = useState([]);
-  const [categories, setCategories] = useState([]);
 
   const [selectedTagIds, setSelectedTagIds] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
@@ -27,33 +27,6 @@ const CreateBlogModal = ({
   const [success, setSuccess] = useState("");
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
-
-  useEffect(() => {
-    async function fetchTaxonomyData() {
-      try {
-        const headers = { "Content-Type": "application/json" };
-
-        const [categoryRes] = await Promise.all([
-          fetch("https://tamkeen-dev.com/api/terms/category", { headers }),
-        ]);
-
-        if (!categoryRes.ok) {
-          throw new Error("Failed to fetch one or more taxonomy endpoints");
-        }
-
-        const [categoryData] = await Promise.all([categoryRes.json()]);
-
-        setCategories(categoryData);
-
-        console.info("Taxonomy terms loaded successfully");
-      } catch (error) {
-        console.error("Error fetching taxonomy terms:", error);
-        setError(error.message);
-      }
-    }
-
-    fetchTaxonomyData();
-  }, []);
 
   const [inputData, setInputData] = useState({
     type: [

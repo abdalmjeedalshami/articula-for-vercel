@@ -439,6 +439,7 @@ const MyArticles = ({ myArticles }) => {
       <div className="text-center">
         <CreateBlogModal
           tags={tags}
+          categories={categories}
           show={showModal}
           handleCloseConfirmed={handleCloseConfirmed}
           articleAddedFun={handleArticleAdded}
