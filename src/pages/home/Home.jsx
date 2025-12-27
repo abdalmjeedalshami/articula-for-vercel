@@ -49,64 +49,68 @@ import companyLogo7 from "../../../src/assets/images/companies/CompanyLogo(7).sv
 
 import { useTranslation } from "react-i18next";
 
-const categoryImages = [
-  {
-    id: 1,
-    name: "Technology",
-    articleCount: 63476,
-    image: cpuIcon,
-    color: "#EBEBFF",
-  },
-  {
-    id: 2,
-    name: "Technology",
-    articleCount: 63476,
-    image: handIcon,
-    color: "#E1F7E3",
-  },
-  {
-    id: 3,
-    name: "Technology",
-    articleCount: 63476,
-    image: receiptIcon,
-    color: "#FFF2E5",
-  },
-  {
-    id: 4,
-    name: "Technology",
-    articleCount: 63476,
-    image: chartBarIcon,
-    color: "#FFF0F0",
-  },
-  {
-    id: 5,
-    name: "Technology",
-    articleCount: 63476,
-    image: cameraIcon,
-    color: "#F5F7FA",
-  },
-  {
-    id: 6,
-    name: "Technology",
-    articleCount: 63476,
-    image: cpuIcon,
-    color: "#F5F7FA",
-  },
-  {
-    id: 7,
-    name: "Technology",
-    articleCount: 63476,
-    image: megaphoneIcon,
-    color: "#EBEBFF",
-  },
-  {
-    id: 8,
-    name: "Technology",
-    articleCount: 63476,
-    image: cameraIcon,
-    color: "#F5F7FA",
-  },
-];
+const categories = [
+    { id: "1", name: "Education", articleCount: 63476, image: cpuIcon, color: "#EBEBFF" },
+    { id: "2", name: "technology", articleCount: 63476, image: handIcon, color: "#E1F7E3" },
+    { id: "3", name: "laptop", articleCount: 63476, image: receiptIcon, color: "#FFF2E5" },
+    { id: "4", name: "business", articleCount: 63476, image: chartBarIcon, color: "#FFF0F0" },
+    { id: "5", name: "website Information", articleCount: 63476, image: cameraIcon, color: "#F5F7FA" },
+    { id: "6", name: "Terms and Conditions", articleCount: 63476, image: cpuIcon, color: "#F5F7FA" },
+    { id: "7", name: "Account Privacy", articleCount: 63476, image: megaphoneIcon, color: "#EBEBFF" },
+    { id: "8", name: "Content restrictions", articleCount: 63476, image: cameraIcon, color: "#F5F7FA" },
+
+  ];
+
+// const categoryImages = [
+//   {
+//     id: 1,
+//     articleCount: 63476,
+//     image: cpuIcon,
+//     color: "#EBEBFF",
+//   },
+//   {
+//     id: 2,
+//     articleCount: 63476,
+//     image: handIcon,
+//     color: "#E1F7E3",
+//   },
+//   {
+//     id: 3,
+//     articleCount: 63476,
+//     image: receiptIcon,
+//     color: "#FFF2E5",
+//   },
+//   {
+//     id: 4,
+//     articleCount: 63476,
+//     image: chartBarIcon,
+//     color: "#FFF0F0",
+//   },
+//   {
+//     id: 5,
+//     articleCount: 63476,
+//     image: cameraIcon,
+//     color: "#F5F7FA",
+//   },
+//   {
+//     id: 6,
+//     articleCount: 63476,
+//     image: cpuIcon,
+//     color: "#F5F7FA",
+//   },
+//   {
+//     id: 7,
+//     articleCount: 63476,
+//     image: megaphoneIcon,
+//     color: "#EBEBFF",
+//   },
+//   {
+//     id: 8,
+//     articleCount: 63476,
+//     image: cameraIcon,
+//     color: "#F5F7FA",
+//   },
+// ];
 
 const writers = [
   {
@@ -214,9 +218,10 @@ const HomePage = () => {
   const { i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
 
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -225,30 +230,23 @@ const HomePage = () => {
         setError("");
 
         // Fetch both APIs in parallel
-        const [catRes, faqCatRes] = await Promise.all([
-          fetch("https://tamkeen-dev.com/api/terms/category"),
-          fetch("https://tamkeen-dev.com/api/terms/faq-category"),
-        ]);
+        // const [catRes, faqCatRes] = await Promise.all([
+        //   fetch("https://tamkeen-dev.com/api/terms/category"),
+        //   fetch("https://tamkeen-dev.com/api/terms/faq-category"),
+        // ]);
 
-        if (!catRes.ok || !faqCatRes.ok) {
-          throw new Error("Failed to fetch categories");
-        }
+        // if (!catRes.ok || !faqCatRes.ok) {
+        //   throw new Error("Failed to fetch categories");
+        // }
 
-        const [catData, faqCatData] = await Promise.all([
-          catRes.json(),
-          faqCatRes.json(),
-        ]);
+        // const [catData, faqCatData] = await Promise.all([
+        //   catRes.json(),
+        //   faqCatRes.json(),
+        // ]);
 
         // Merge both arrays
-        const merged = [...catData, ...faqCatData].map((cat, index) => ({
-          ...cat,
-          articleCount: categoryImages[index].articleCount,
-          color: categoryImages[index].color,
-          image:
-            categoryImages[index].image || "/images/categories/default.png",
-        }));
+       
 
-        setCategories(merged);
       } catch (err) {
         setError(err.message || "Error loading categories");
       } finally {
@@ -534,7 +532,6 @@ const HomePage = () => {
                 <CategoryCard
                   key={category.id}
                   category={category}
-                  categoryImages={categoryImages}
                 />
               ))}
             </Row>
