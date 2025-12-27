@@ -9,8 +9,9 @@ import logoIcon from "./assets/icons/graduationCap.svg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Helmet } from "react-helmet";
-import HomePage from "../src/pages/home/Home"
+import HomePage from "../src/pages/home/Home";
 import MyAppBar from "./components/layout/my_appBar/MyAppBar";
+import MyNavbar from "./components/layout/my_navbar/MyNavbar";
 
 
 function App() {
@@ -43,18 +44,14 @@ function App() {
         <link rel="icon" href={logoIcon} />
       </Helmet>
 
-
-
-
       <BrowserRouter>
-      <MyAppBar logo={logoIcon}/>
+        <MyNavbar />
+
+        <MyAppBar logo={logoIcon} />
 
         <Routes>
-
-          
-          <Route path="/login" element={ <Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<HomePage />} />
-          
         </Routes>
       </BrowserRouter>
     </>
