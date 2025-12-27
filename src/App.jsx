@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet";
 import HomePage from "../src/pages/home/Home";
 import MyAppBar from "./components/layout/my_appBar/MyAppBar";
 import MyNavbar from "./components/layout/my_navbar/MyNavbar";
-
+import About from "./pages/about/About"
 
 function App() {
   useEffect(() => {
@@ -52,6 +52,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </>

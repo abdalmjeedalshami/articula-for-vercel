@@ -50,67 +50,63 @@ import companyLogo7 from "../../../src/assets/images/companies/CompanyLogo(7).sv
 import { useTranslation } from "react-i18next";
 
 const categories = [
-    { id: "1", name: "Education", articleCount: 63476, image: cpuIcon, color: "#EBEBFF" },
-    { id: "2", name: "technology", articleCount: 63476, image: handIcon, color: "#E1F7E3" },
-    { id: "3", name: "laptop", articleCount: 63476, image: receiptIcon, color: "#FFF2E5" },
-    { id: "4", name: "business", articleCount: 63476, image: chartBarIcon, color: "#FFF0F0" },
-    { id: "5", name: "website Information", articleCount: 63476, image: cameraIcon, color: "#F5F7FA" },
-    { id: "6", name: "Terms and Conditions", articleCount: 63476, image: cpuIcon, color: "#F5F7FA" },
-    { id: "7", name: "Account Privacy", articleCount: 63476, image: megaphoneIcon, color: "#EBEBFF" },
-    { id: "8", name: "Content restrictions", articleCount: 63476, image: cameraIcon, color: "#F5F7FA" },
-
-  ];
-
-// const categoryImages = [
-//   {
-//     id: 1,
-//     articleCount: 63476,
-//     image: cpuIcon,
-//     color: "#EBEBFF",
-//   },
-//   {
-//     id: 2,
-//     articleCount: 63476,
-//     image: handIcon,
-//     color: "#E1F7E3",
-//   },
-//   {
-//     id: 3,
-//     articleCount: 63476,
-//     image: receiptIcon,
-//     color: "#FFF2E5",
-//   },
-//   {
-//     id: 4,
-//     articleCount: 63476,
-//     image: chartBarIcon,
-//     color: "#FFF0F0",
-//   },
-//   {
-//     id: 5,
-//     articleCount: 63476,
-//     image: cameraIcon,
-//     color: "#F5F7FA",
-//   },
-//   {
-//     id: 6,
-//     articleCount: 63476,
-//     image: cpuIcon,
-//     color: "#F5F7FA",
-//   },
-//   {
-//     id: 7,
-//     articleCount: 63476,
-//     image: megaphoneIcon,
-//     color: "#EBEBFF",
-//   },
-//   {
-//     id: 8,
-//     articleCount: 63476,
-//     image: cameraIcon,
-//     color: "#F5F7FA",
-//   },
-// ];
+  {
+    id: "1",
+    name: "Education",
+    articleCount: 63476,
+    image: cpuIcon,
+    color: "#EBEBFF",
+  },
+  {
+    id: "2",
+    name: "technology",
+    articleCount: 63476,
+    image: handIcon,
+    color: "#E1F7E3",
+  },
+  {
+    id: "3",
+    name: "laptop",
+    articleCount: 63476,
+    image: receiptIcon,
+    color: "#FFF2E5",
+  },
+  {
+    id: "4",
+    name: "business",
+    articleCount: 63476,
+    image: chartBarIcon,
+    color: "#FFF0F0",
+  },
+  {
+    id: "5",
+    name: "website Information",
+    articleCount: 63476,
+    image: cameraIcon,
+    color: "#F5F7FA",
+  },
+  {
+    id: "6",
+    name: "Terms and Conditions",
+    articleCount: 63476,
+    image: cpuIcon,
+    color: "#F5F7FA",
+  },
+  {
+    id: "7",
+    name: "Account Privacy",
+    articleCount: 63476,
+    image: megaphoneIcon,
+    color: "#EBEBFF",
+  },
+  {
+    id: "8",
+    name: "Content restrictions",
+    articleCount: 63476,
+    image: cameraIcon,
+    color: "#F5F7FA",
+  },
+];
 
 const writers = [
   {
@@ -220,42 +216,6 @@ const HomePage = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
-
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        setLoading(true);
-        setError("");
-
-        // Fetch both APIs in parallel
-        // const [catRes, faqCatRes] = await Promise.all([
-        //   fetch("https://tamkeen-dev.com/api/terms/category"),
-        //   fetch("https://tamkeen-dev.com/api/terms/faq-category"),
-        // ]);
-
-        // if (!catRes.ok || !faqCatRes.ok) {
-        //   throw new Error("Failed to fetch categories");
-        // }
-
-        // const [catData, faqCatData] = await Promise.all([
-        //   catRes.json(),
-        //   faqCatRes.json(),
-        // ]);
-
-        // Merge both arrays
-       
-
-      } catch (err) {
-        setError(err.message || "Error loading categories");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, []);
 
   const articles = [
     {
@@ -468,13 +428,6 @@ const HomePage = () => {
         image={welcomeImage}
       />
 
-      {/* {loading && (
-        <div className="mb-5">
-          <MySpinner />
-        </div>
-      )} */}
-      {/* {error && <p className="text-danger">{error}</p>} */}
-
       {loading ||
         (error && (
           <MySection
@@ -503,24 +456,6 @@ const HomePage = () => {
           />
         ))}
 
-      {/* {error && (
-        <MySection
-          header={{
-            title: isArabic ? "حدث خطأ" : "Something went wrong",
-          }}
-          body={
-            <div className="text-center text-danger py-4">
-              <i className="bi bi-exclamation-triangle fs-1"></i>
-              <p className="mt-3">
-                {isArabic
-                  ? "تعذر تحميل التصنيفات، حاول مجددًا لاحقًا."
-                  : "Failed to load categories, please try again later."}
-              </p>
-            </div>
-          }
-        />
-      )} */}
-
       {!loading && !error && (
         <MySection
           header={{
@@ -529,10 +464,7 @@ const HomePage = () => {
           body={
             <Row>
               {categories.map((category) => (
-                <CategoryCard
-                  key={category.id}
-                  category={category}
-                />
+                <CategoryCard key={category.id} category={category} />
               ))}
             </Row>
           }
