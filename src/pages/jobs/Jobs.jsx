@@ -12,7 +12,7 @@ import GiftIcon from "../../assets/icons/Gift.svg";
 import ArmchairIcon from "../../assets/icons/Armchair.svg";
 import ForkKnifeIcon from "../../assets/icons/ForkKnife.svg";
 import TrophyIcon from "../../assets/icons/Trophy.svg";
-import HandshakeIcon from "../../assets/icons/Handshake.svg";
+import HandshakeIcon from "../../assets/icons/handshake.svg";
 import articleImage from "../../assets/images/article_image.png";
 import JobCard from "../../components/cards/job_card/JobCard";
 import MyFooter from "../../components/layout/my_footer/MyFooter";
