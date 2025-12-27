@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { editUser } from "../../../utils/user";
 import MyButton from "../../common/my_button/MyButton";
 
 const EditProfile = ({ user, setRefreshFlag }) => {

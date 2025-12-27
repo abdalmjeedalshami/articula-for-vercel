@@ -14,6 +14,8 @@ import MyAppBar from "./components/layout/my_appBar/MyAppBar";
 import MyNavbar from "./components/layout/my_navbar/MyNavbar";
 import About from "./pages/about/About"
 import Articles from "./pages/articles/Articles"
+import Account from "./pages/account/Account";
+
 
 function App() {
   useEffect(() => {
@@ -55,6 +57,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<About />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </BrowserRouter>
     </>
