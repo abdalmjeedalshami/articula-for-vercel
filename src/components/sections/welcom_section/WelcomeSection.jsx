@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 const WelcomeSection = ({ title, subtitle, image }) => {
   const { i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
-  
+
   return (
     <Container
       fluid
@@ -26,7 +26,7 @@ const WelcomeSection = ({ title, subtitle, image }) => {
           <p style={{ color: colors.textMuted.welcome }}>{subtitle}</p>
           <div>
             <MyButton
-              classes=""
+              classes="reading-btn"
               text={isArabic ? "ابدأ القراءة" : "Start Reading"}
               color={colors.white}
               backgroundColor={colors.blackBackground}
@@ -35,7 +35,7 @@ const WelcomeSection = ({ title, subtitle, image }) => {
               ""
             ) : (
               <MyButton
-              classes="ms-3"
+                classes=""
                 text={isArabic ? "إنشاء حساب" : "Create Account"}
                 color={colors.secondary}
                 backgroundColor={colors.primary}
