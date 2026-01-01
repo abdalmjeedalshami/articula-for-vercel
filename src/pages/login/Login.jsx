@@ -83,9 +83,9 @@ const Login = () => {
 
                 {/* Username */}
                 <div className="mb-3" data-aos="fade-up" data-aos-delay={400}>
+                  <label className="text-muted" htmlFor="">type your username: abdalmjeed</label>
                   <input
                     type="text"
-                    placeholder="Type your username"
                     className="form-control"
                     id="username"
                     onInput={(e) =>
@@ -97,9 +97,9 @@ const Login = () => {
 
                 {/* Password */}
                 <div className="mb-3" data-aos="fade-up" data-aos-delay={500}>
+                  <label className="text-muted" htmlFor="">type your password: 123456</label>
                   <input
                     type="password"
-                    placeholder="Type your password"
                     className="form-control"
                     id="password"
                     onInput={(e) =>
