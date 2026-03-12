@@ -33,7 +33,7 @@ const MyForm = ({ fields = [], onSubmit, buttonText = "Submit" }) => {
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                <Form.Group controlId={field.name} className="mb-3">
+                <Form.Group controlId={field.name} className="mt-4">
                   {field.label && (
                     <Form.Label
                       className="fs-6 m-0"
@@ -59,37 +59,43 @@ const MyForm = ({ fields = [], onSubmit, buttonText = "Submit" }) => {
             ))}
           </Row>
         ) : (
-          <Form.Group
-            controlId={fieldGroup.name}
-            key={fieldGroup.name}
-            className="mb-3"
-            data-aos="fade-up"
-            data-aos-delay={idx * 100}
-          >
-            {fieldGroup.label ? (
-              <Form.Label
-                className="fs-6 m-0"
-                style={{ color: colors.blackBackground }}
+
+            <Col key={idx}
+              md={4}
+              data-aos="fade-up"
+            >
+              <Form.Group
+                controlId={fieldGroup.name}
+                key={fieldGroup.name}
+                className="mb-3"
+                data-aos="fade-up"
+                data-aos-delay={idx * 100}
               >
-                {fieldGroup.label}
-              </Form.Label>
-            ) : (
-              <div className="mb-3"></div>
-            )}
-            <Form.Control
-              as={fieldGroup.type === "textarea" ? "textarea" : "input"}
-              type={fieldGroup.type || "text"}
-              name={fieldGroup.name}
-              value={formData[fieldGroup.name]}
-              placeholder={fieldGroup.placeholder}
-              onChange={handleChange}
-              style={{
-                fontSize: ".85rem",
-                color: colors.textMuted.navbar,
-                border: `1px solid ${colors.borderAbsolutCard}`,
-              }}
-            />
-          </Form.Group>
+                {fieldGroup.label ? (
+                  <Form.Label
+                    className="fs-6 m-0"
+                    style={{ color: colors.blackBackground }}
+                  >
+                    {fieldGroup.label}
+                  </Form.Label>
+                ) : (
+                  <div className="mb-3"></div>
+                )}
+                <Form.Control
+                  as={fieldGroup.type === "textarea" ? "textarea" : "input"}
+                  type={fieldGroup.type || "text"}
+                  name={fieldGroup.name}
+                  value={formData[fieldGroup.name]}
+                  placeholder={fieldGroup.placeholder}
+                  onChange={handleChange}
+                  style={{
+                    fontSize: ".85rem",
+                    color: colors.textMuted.navbar,
+                    border: `1px solid ${colors.borderAbsolutCard}`,
+                  }}
+                />
+              </Form.Group>
+            </Col>
         )
       )}
       <div data-aos="fade-up" data-aos-delay={fields.length * 100}>

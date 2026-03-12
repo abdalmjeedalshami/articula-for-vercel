@@ -21,6 +21,7 @@ import Jobs from "./pages/jobs/Jobs";
 import Faqs from "./pages/faqs/Faqs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import JobsList1 from "./pages/jobs_list/JobsList1";
 
 function App() {
   useEffect(() => {
@@ -64,6 +65,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/jobs" element={<Jobs />} />
+          <Route path="/jobs/list" element={<JobsList1 />} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/articles" element={token ? <Articles /> : <Login />} />
           <Route path="/account" element={token ? <Account /> : <Login />} />

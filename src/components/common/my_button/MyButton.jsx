@@ -10,10 +10,12 @@ const MyButton = ({
   color = "#fff",
   backgroundColor = colors.primary,
   route = "",
-  onClick = () => {},
+  onClick = () => { },
   classes = "",
   hoverColor = tinycolor(color).lighten(50).toString(),
   hoverBackgroundColor = tinycolor(backgroundColor).darken(15).toString(),
+  style: userStyle = {},
+  userAriaCurrent = {},
 }) => {
   const navigate = useNavigate();
   const [hover, setHover] = useState(false);
@@ -35,11 +37,13 @@ const MyButton = ({
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      aria-current={userAriaCurrent}
       style={{
         ...baseStyle,
         cursor: disabled ? "not-allowed" : "pointer",
         opacity: disabled ? 0.6 : 1,
         transition: "all 0.2s ease",
+        ...userStyle,
       }}
     >
       <div className="d-flex justify-content-center align-items-center gap-2 fs-6">

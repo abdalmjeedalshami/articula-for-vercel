@@ -349,60 +349,100 @@ const HomePage = () => {
       auth: "Mohammad Issa",
     },
   ];
-  const jobs = [
-    {
-      id: 1,
-      image: articleImage,
-      tag: {
-        text: isArabic ? "مميز" : "Featured",
-        color: "#15711F",
-        background: "#E1F7E3",
-      },
-      salary: "$300",
-      title: isArabic ? "تحليل الأنظمة" : "System Analysis",
-      description: isArabic ? "خبرة سنتين" : "2 Years of experience",
-    },
-    {
-      id: 2,
-      image: articleImage2,
-      tag: {
-        text: isArabic ? "مميز" : "Featured",
-        color: "#993D20",
-        background: "#FFEEE8",
-      },
-      salary: "$300-400",
-      title: isArabic
-        ? "مطوّر الواجهة الأمامية (React / Nextjs)"
-        : "Frontend Developer (React / Nextjs)",
-      description: isArabic ? "خبرة أكثر من 5 سنوات" : "+5 Years of experience",
-    },
-    {
-      id: 3,
-      image: articleImage3,
-      tag: {
-        text: isArabic ? "عاجل" : "Urgent",
-        color: "#15711F",
-        background: "#E1F7E3",
-      },
-      salary: "$300-500",
-      title: isArabic
-        ? "مصمم واجهات المستخدم وتجربة المستخدم"
-        : "UI/UX Designer",
-      description: isArabic ? "خبرة سنتين" : "2 Years of experience",
-    },
-    {
-      id: 4,
-      image: articleImage4,
-      tag: {
-        text: isArabic ? "مميز" : "Featured",
-        color: "#15711F",
-        background: "#E1F7E3",
-      },
-      salary: "$450",
-      title: isArabic ? "مطوّر ASP للواجهة الخلفية" : "ASP Backend Developer",
-      description: isArabic ? "خبرة أكثر من 3 سنوات" : "+3 Years of experience",
-    },
-  ];
+  // const jobs = [
+  //   {
+  //     id: 1,
+  //     image: articleImage,
+  //     tag: {
+  //       text: isArabic ? "مميز" : "Featured",
+  //       color: "#15711F",
+  //       background: "#E1F7E3",
+  //     },
+  //     salary: "$300",
+  //     title: isArabic ? "تحليل الأنظمة" : "System Analysis",
+  //     description: isArabic ? "خبرة سنتين" : "2 Years of experience",
+  //   },
+  //   {
+  //     id: 2,
+  //     image: articleImage2,
+  //     tag: {
+  //       text: isArabic ? "مميز" : "Featured",
+  //       color: "#993D20",
+  //       background: "#FFEEE8",
+  //     },
+  //     salary: "$300-400",
+  //     title: isArabic
+  //       ? "مطوّر الواجهة الأمامية (React / Nextjs)"
+  //       : "Frontend Developer (React / Nextjs)",
+  //     description: isArabic ? "خبرة أكثر من 5 سنوات" : "+5 Years of experience",
+  //   },
+  //   {
+  //     id: 3,
+  //     image: articleImage3,
+  //     tag: {
+  //       text: isArabic ? "عاجل" : "Urgent",
+  //       color: "#15711F",
+  //       background: "#E1F7E3",
+  //     },
+  //     salary: "$300-500",
+  //     title: isArabic
+  //       ? "مصمم واجهات المستخدم وتجربة المستخدم"
+  //       : "UI/UX Designer",
+  //     description: isArabic ? "خبرة سنتين" : "2 Years of experience",
+  //   },
+  //   {
+  //     id: 4,
+  //     image: articleImage4,
+  //     tag: {
+  //       text: isArabic ? "مميز" : "Featured",
+  //       color: "#15711F",
+  //       background: "#E1F7E3",
+  //     },
+  //     salary: "$450",
+  //     title: isArabic ? "مطوّر ASP للواجهة الخلفية" : "ASP Backend Developer",
+  //     description: isArabic ? "خبرة أكثر من 3 سنوات" : "+3 Years of experience",
+  //   },
+  // ];
+
+  const [jobs, setJobs] = useState([]);
+
+  /// Fetch jobs
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
+    const load = async () => {
+      setLoading(true);
+      setError("");
+      try {
+        const res = await fetch(
+          "https://jobicy.com/api/v2/remote-jobs?count=4",
+          { signal: controller.signal }
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        // The Jobicy API returns an object with `jobs` (array)
+        const items = Array.isArray(data?.jobs) ? data.jobs : [];
+        if (isMounted) {
+          setJobs(items);
+        }
+      } catch (e) {
+        if (e.name !== "AbortError") {
+          setError(e.message || "Failed to fetch jobs");
+        }
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    load();
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -492,9 +532,61 @@ const HomePage = () => {
         }}
         body={
           <Row>
-            {jobs.map((job) => (
-              <JobCard key={job.id} job={job} />
-            ))}
+            {jobs.map((job, index) => {
+              const hasSalary =
+                job?.salaryMin != null &&
+                job?.salaryMax != null &&
+                job.salaryMin !== "" &&
+                job.salaryMax !== "" &&
+                job.salaryMin !== "NaN" &&
+                job.salaryMax !== "NaN";
+
+              const salaryValue = hasSalary
+                ? job.salaryMin === job.salaryMax
+                  ? job.salaryMax
+                  : (job.salaryMin + job.salaryMax) / 2
+                : null;
+
+              const salaryObj = {
+                value: salaryValue,
+                currency: job.salaryCurrency || "",
+                period: job.salaryPeriod || "",
+                rawMin: job.salaryMin,
+                rawMax: job.salaryMax,
+                disclosed: hasSalary
+              };
+
+              return (<JobCard
+                key={job.id}
+                index={index}
+                inList
+                job={{
+                  image: job.companyLogo,
+                  title: job.jobTitle,
+                  id: job.id,
+                  type: job.jobType,
+                  level: job.jobLevel,
+                  companyName: job.companyName,
+                  tags: job.jobGeo,
+                  description: job.jobExcerpt,
+                  salary: salaryObj,
+                  url: job.url,
+                  // salary:
+                  //     job?.salaryMin != null &&
+                  //         job?.salaryMax != null &&
+                  //         job.salaryMin !== "" &&
+                  //         job.salaryMax !== "" &&
+                  //         job.salaryMin !== "NaN" &&
+                  //         job.salaryMax !== "NaN"
+                  //         ? job.salaryMin === job.salaryMax
+                  //             ? `${job.salaryMax}` // same value
+                  //             : `${(job.salaryMin + job.salaryMax) / 2}` // midpoint
+                  //         : "Undisclosed",
+                  // salaryCurrency: job.salaryCurrency,
+                  // salaryPeriod: job.salaryPeriod,
+                }}
+              />);
+            })}
           </Row>
         }
         footer={{

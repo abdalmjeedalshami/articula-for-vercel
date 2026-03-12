@@ -16,6 +16,7 @@ import HandshakeIcon from "../../assets/icons/handshake.svg";
 import articleImage from "../../assets/images/article_image.png";
 import JobCard from "../../components/cards/job_card/JobCard";
 import MyFooter from "../../components/layout/my_footer/MyFooter";
+import { NavLink } from "react-router";
 
 const breadcrumbPath = [
   { label: "Home", to: "/" },
@@ -172,9 +173,10 @@ const Jobs = () => {
         }}
         body={
           <Row>
-            {jobs.map((job) => (
-              <JobCard key={job.id} job={job} />
+            {jobs.map((job) => (""
+              // <JobCard key={job.id} job={job} />
             ))}
+            <NavLink to={"list"} className={"text-decoration-none d-flex justify-content-center"}>Show all jobs</NavLink>
           </Row>
         }
       />

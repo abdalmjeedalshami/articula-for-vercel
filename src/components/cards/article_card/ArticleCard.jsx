@@ -86,7 +86,7 @@ const ArticleCard = ({
     <div
       className="col-12 col-md-6 col-lg-4"
       data-aos="fade-up"
-      data-aos-delay={articleKey * 10}
+      data-aos-delay={ 10}
       data-aos-duration="800"
       data-aos-once="true"
     >
